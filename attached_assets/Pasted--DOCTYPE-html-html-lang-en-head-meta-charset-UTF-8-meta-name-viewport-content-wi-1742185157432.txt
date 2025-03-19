@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Friendly Portfolio</title>
+  <style>
+    /* Reset and Base Styles */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: #333;
+      color: #fff;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      margin: 0;
+      padding: 0;
+    }
+    nav li button {
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    nav li button:hover,
+    nav li button.active {
+      background: #555;
+      border-radius: 4px;
+    }
+
+    /* Main Page & Page Sections */
+    main {
+      padding: 20px;
+    }
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .page.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Home: Category Cards */
+    #home h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .category-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      text-align: center;
+      padding: 6px;
+      font-size: 16px;
+    }
+
+    /* Category Galleries */
+    .category-title {
+      text-align: center;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* Return Home Button */
+    .return-home {
+      display: block;
+      width: 140px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .return-home:hover {
+      background: #555;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      nav li button {
+        padding: 8px 10px;
+        font-size: 14px;
+      }
+      .return-home {
+        width: 120px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Navigation. The active category button will always appear “hovered”. -->
+  <header>
+    <nav>
+      <ul>
+        <!-- Note: Home is also clickable in the nav -->
+        <li><button id="nav-home" onclick="showPage('home')">Home</button></li>
+        <li><button id="nav-nature" onclick="showPage('category-nature')">Nature</button></li>
+        <li><button id="nav-architecture" onclick="showPage('category-architecture')">Architecture</button></li>
+        <li><button id="nav-people" onclick="showPage('category-people')">People</button></li>
+        <li><button id="nav-animals" onclick="showPage('category-animals')">Animals</button></li>
+        <li><button id="nav-travel" onclick="showPage('category-travel')">Travel</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Home Page: Overview with 5 Category Cards -->
+    <section id="home" class="page active">
+      <h1>My Portfolio</h1>
+      <div class="category-cards">
+        <!-- Nature Category Card -->
+        <div class="card" onclick="showPage('category-nature')">
+          <img src="https://via.placeholder.com/300?text=Nature" alt="Nature">
+          <div class="card-overlay">Nature</div>
+        </div>
+        <!-- Architecture Category Card -->
+        <div class="card" onclick="showPage('category-architecture')">
+          <img src="https://via.placeholder.com/300?text=Architecture" alt="Architecture">
+          <div class="card-overlay">Architecture</div>
+        </div>
+        <!-- People Category Card -->
+        <div class="card" onclick="showPage('category-people')">
+          <img src="https://via.placeholder.com/300?text=People" alt="People">
+          <div class="card-overlay">People</div>
+        </div>
+        <!-- Animals Category Card -->
+        <div class="card" onclick="showPage('category-animals')">
+          <img src="https://via.placeholder.com/300?text=Animals" alt="Animals">
+          <div class="card-overlay">Animals</div>
+        </div>
+        <!-- Travel Category Card -->
+        <div class="card" onclick="showPage('category-travel')">
+          <img src="https://via.placeholder.com/300?text=Travel" alt="Travel">
+          <div class="card-overlay">Travel</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Pages -->
+
+    <!-- Nature Gallery -->
+    <section id="category-nature" class="page">
+      <h2 class="category-title">Nature</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/300?text=Nature+1" alt="Nature Image 1">
+        <img src="https://via.placeholder.com/300?text=Nature+2" alt="Nature Image 2">
+        <img src="https://via.placeholder.com/300?text=Nature+3" alt="Nature Image 3">
+        <img src="https://via.placeholder.com/300?text=Nature+4" alt="Nature Image 4">
+        <img src="https://via.placeholder.com/300?text=Nature+5" alt="Nature Image 5">
+        <img src="https://via.placeholder.com/300?text=Nature+6" alt="Nature Image 6">
+      </div>
+      <button class="return-home" onclick="showPage('home')">Return Home</button>
+    </section>
+
+    <!-- Architecture Gallery -->
+    <section id="category-architecture" class="page">
+      <h2 class="category-title">Architecture</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/300?text=Architecture+1" alt="Architecture Image 1">
+        <img src="https://via.placeholder.com/300?text=Architecture+2" alt="Architecture Image 2">
+        <img src="https://via.placeholder.com/300?text=Architecture+3" alt="Architecture Image 3">
+        <img src="https://via.placeholder.com/300?text=Architecture+4" alt="Architecture Image 4">
+        <img src="https://via.placeholder.com/300?text=Architecture+5" alt="Architecture Image 5">
+        <img src="https://via.placeholder.com/300?text=Architecture+6" alt="Architecture Image 6">
+      </div>
+      <button class="return-home" onclick="showPage('home')">Return Home</button>
+    </section>
+
+    <!-- People Gallery -->
+    <section id="category-people" class="page">
+      <h2 class="category-title">People</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/300?text=People+1" alt="People Image 1">
+        <img src="https://via.placeholder.com/300?text=People+2" alt="People Image 2">
+        <img src="https://via.placeholder.com/300?text=People+3" alt="People Image 3">
+        <img src="https://via.placeholder.com/300?text=People+4" alt="People Image 4">
+        <img src="https://via.placeholder.com/300?text=People+5" alt="People Image 5">
+        <img src="https://via.placeholder.com/300?text=People+6" alt="People Image 6">
+      </div>
+      <button class="return-home" onclick="showPage('home')">Return Home</button>
+    </section>
+
+    <!-- Animals Gallery -->
+    <section id="category-animals" class="page">
+      <h2 class="category-title">Animals</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/300?text=Animals+1" alt="Animals Image 1">
+        <img src="https://via.placeholder.com/300?text=Animals+2" alt="Animals Image 2">
+        <img src="https://via.placeholder.com/300?text=Animals+3" alt="Animals Image 3">
+        <img src="https://via.placeholder.com/300?text=Animals+4" alt="Animals Image 4">
+        <img src="https://via.placeholder.com/300?text=Animals+5" alt="Animals Image 5">
+        <img src="https://via.placeholder.com/300?text=Animals+6" alt="Animals Image 6">
+      </div>
+      <button class="return-home" onclick="showPage('home')">Return Home</button>
+    </section>
+
+    <!-- Travel Gallery -->
+    <section id="category-travel" class="page">
+      <h2 class="category-title">Travel</h2>
+      <div class="gallery">
+        <img src="https://via.placeholder.com/300?text=Travel+1" alt="Travel Image 1">
+        <img src="https://via.placeholder.com/300?text=Travel+2" alt="Travel Image 2">
+        <img src="https://via.placeholder.com/300?text=Travel+3" alt="Travel Image 3">
+        <img src="https://via.placeholder.com/300?text=Travel+4" alt="Travel Image 4">
+        <img src="https://via.placeholder.com/300?text=Travel+5" alt="Travel Image 5">
+        <img src="https://via.placeholder.com/300?text=Travel+6" alt="Travel Image 6">
+      </div>
+      <button class="return-home" onclick="showPage('home')">Return Home</button>
+    </section>
+  </main>
+
+  <!-- JavaScript for Page Navigation -->
+  <script>
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+
+      // Show the selected page
+      const target = document.getElementById(pageId);
+      if (target) target.classList.add('active');
+
+      // Update the active state on the header navigation buttons
+      const navButtons = document.querySelectorAll('header nav ul li button');
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      if (pageId === 'home') {
+        document.getElementById('nav-home').classList.add('active');
+      } else {
+        // pageId is in the form "category-<name>"
+        const category = pageId.replace('category-', '');
+        const btn = document.getElementById('nav-' + category);
+        if (btn) btn.classList.add('active');
+      }
+    }
+
+    // Optionally, you can set the default page on load
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage('home');
+    });
+  </script>
+</body>
+</html>
